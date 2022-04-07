@@ -6,7 +6,7 @@
         {
             "label": "Lacework: Build Docker image for vulnerability scanning (ARM)",
             "type": "shell",
-            "command": "docker buildx build --platform=linux/amd64 -t ${workspaceFolderBasename}:lw-scanner -f Dockerfile ${workspaceFolder}"
+            "command": "docker buildx build --platform=linux/arm64 -t ${workspaceFolderBasename}:lw-scanner -f Dockerfile ${workspaceFolder}"
         },
         {
             "label": "Lacework: Build Docker image for vulnerability scanning (x86)",
