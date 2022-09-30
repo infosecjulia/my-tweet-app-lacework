@@ -20,7 +20,7 @@ jobs:
          - name: Build
            uses: docker/build-push-action@v2
            with:
-             tags: infosecjulia/my-tweet-app-lacework:${{ env.GHA_SHA }},infosecjulia/my-tweet-app-lacework:latest
+             tags: /my-tweet-app-lacework:${{ env.GHA_SHA }},/my-tweet-app-lacework:latest
              load: true
 
          - name: lw-scanner
@@ -32,7 +32,7 @@ jobs:
            with:
              LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
              LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
-             image_name: infosecjulia/my-tweet-app-lacework
+             image_name: /my-tweet-app-lacework
              image_tag: ${{ env.GHA_SHA }}
              BUILD_REPORT_FILE_NAME: true
              USE_POLICY: true
@@ -47,7 +47,7 @@ jobs:
            uses: docker/build-push-action@v2
            with:
              push: true
-             tags: infosecjulia/my-tweet-app-lacework:${{ env.GHA_SHA }},infosecjulia/my-tweet-app-lacework:latest,infosecjulia/my-tweet-app-lacework:production
+             tags: /my-tweet-app-lacework:${{ env.GHA_SHA }},/my-tweet-app-lacework:latest,infosecjulia8/my-tweet-app-lacework:production
 
          - name: Configure AWS credentials
            uses: aws-actions/configure-aws-credentials@v1
@@ -61,7 +61,7 @@ jobs:
            env:
              KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
            with:
-             args: set image deployment/my-tweet-app my-tweet-app=infosecjulia/my-tweet-app-lacework:${{ env.GHA_SHA }} -n my-tweet-app
+             args: set image deployment/my-tweet-app my-tweet-app=infosecjulia8/my-tweet-app-lacework:${{ env.GHA_SHA }} -n my-tweet-app
 
          - name: verify deployment
            uses: kodermax/kubectl-aws-eks@master
