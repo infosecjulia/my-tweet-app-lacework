@@ -59,6 +59,8 @@ jobs:
          - name: deploy to cluster
            uses: kodermax/kubectl-aws-eks@master
            env:
+             AWS_DEFAULT_REGION: us-west-1
+             AWS_REGION: us-west-1
              KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
            with:
              args: set image deployment/my-tweet-app my-tweet-app=infosecjulia8/my-tweet-app-lacework:${{ env.GHA_SHA }} -n my-tweet-app
@@ -66,6 +68,8 @@ jobs:
          - name: verify deployment
            uses: kodermax/kubectl-aws-eks@master
            env:
+             AWS_DEFAULT_REGION: us-west-1
+             AWS_REGION: us-west-1
              KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
            with:
              args: rollout status deployment/my-tweet-app -w -n my-tweet-app
