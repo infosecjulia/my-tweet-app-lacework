@@ -14,7 +14,7 @@
             "dockerBuild": {
                 "context": "${workspaceFolder}",
                 "dockerfile": "${workspaceFolder}/Dockerfile",
-                "tag": "${workspaceFolderBasename}:lw-scanner"
+                "tag": "infosecjulia8/${workspaceFolderBasename}:lw-scanner"
             }
         },
         {
